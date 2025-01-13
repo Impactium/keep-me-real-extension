@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["DOM", "ESNext"],
-    "types": ["chrome"],
-    "moduleResolution": "node",
+    "jsx": "react",
     "strict": true,
-    "esModuleInterop": true
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "outDir": "./dist", // Указывает, куда помещать скомпилированные файлы
+    "rootDir": "./src"  // Указывает, где искать исходники
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
