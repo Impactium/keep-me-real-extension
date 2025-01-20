@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useContext, useMemo, useState } from 'react';
 import { User } from '@/contexts/UserContext';
-import { Button, Stack } from '@impactium/components';
-import { Input } from '@/ui/input';
+import { Button, Input, Stack } from '@impactium/components';
 
 export const AuthScreen: React.FC = () => {
   const { login, loginAsGuest } = User.use();

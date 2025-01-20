@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import s from '@/styles/SettingsModal.module.css';
-import { Slider } from '@/ui/slider';
-import { Button, Stack } from '@impactium/components';
+import { Input, Stack } from '@impactium/components';
 import { Modal } from './Modal';
+import { ColorPicker } from '@/ui/color';
 
 export namespace SettingsModal {
   export interface Props extends Omit<Modal.Props, 'title'> {
@@ -35,14 +35,12 @@ export const SettingsModal = ({ open, setOpen, ...props }: SettingsModal.Props) 
 
   return (
     <Modal dir='column' pos='absolute' title='Settings' open={open} setOpen={setOpen} {...props}>
-      <label>
-        Green Shade: {greenShade}
-        <Slider value={[greenShade]} onChange={greenSliderChangeHandler} />
-      </label>
-      <label>
-        Red Shade: {redShade}
-        <Slider value={[redShade]} onChange={redSliderChangeHandler} />
-      </label>
+      <Stack>
+        <p></p>
+        <Input variant='default' />
+      </Stack>
+      <ColorPicker />
+      <ColorPicker />
     </Modal>
   );
 };

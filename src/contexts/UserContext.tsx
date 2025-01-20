@@ -21,12 +21,18 @@ export namespace User {
 
   export type Type = Record<string, string | undefined>;
 
+  export interface Settings {
+    verified: string;
+    falsy: string;
+  }
+
   export const Context = createContext<User.Export | undefined>(undefined);
 
   export const use = () => useContext(Context)!;
 
   export const Provider = ({ children }: User.Props) => {
     const [user, setUser] = useState<User.Type | null>(null);
+    const [settings, setSettings] = useState<User.Settings>();
     const [isUserLoggedIsAsGuest, setIsUserLoggedIsAsGuest] = useState<boolean | null>(null);
     
   
@@ -57,7 +63,7 @@ export namespace User {
     const logout = () => {
       setUser(null);
       setIsUserLoggedIsAsGuest(null);
-      return;
+    return;
     }
   
     return (
