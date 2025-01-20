@@ -4,8 +4,13 @@ import { AuthScreen } from '@/components/AuthScreen';
 import { MainMenu } from '@/components/MainMenu';
 
 const App: React.FC = () => {
-  const { user } = User.use();
-  return user ? <MainMenu /> : <AuthScreen />;
+  const { user, isUserLoggedIsAsGuest } = User.use();
+  
+  if (user || isUserLoggedIsAsGuest) {
+    return <MainMenu />
+  }
+
+  return <AuthScreen />;
 };
 
 export default function RootApp() {

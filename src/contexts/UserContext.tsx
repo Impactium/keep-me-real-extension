@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export namespace User {
   export interface Props {
@@ -15,6 +15,8 @@ export namespace User {
     setUser: React.Dispatch<React.SetStateAction<User.Type | null>>;
     login: (obj: Login) => Promise<User.Type | null>;
     logout: () => void;
+    loginAsGuest: () => void;
+    isUserLoggedIsAsGuest: boolean | null;
   }
 
   export type Type = Record<string, string | undefined>;
@@ -25,6 +27,8 @@ export namespace User {
 
   export const Provider = ({ children }: User.Props) => {
     const [user, setUser] = useState<User.Type | null>(null);
+    const [isUserLoggedIsAsGuest, setIsUserLoggedIsAsGuest] = useState<boolean | null>(null);
+    
   
     const login = async ({ username, password }: User.Login) => {
       // api('/login', {
@@ -39,14 +43,25 @@ export namespace User {
   
       return user;
     }
+
+    const loginAsGuest = () => {
+      setIsUserLoggedIsAsGuest(true);
+    }
+
+    useEffect(() => {
+      if (user) {
+        setIsUserLoggedIsAsGuest(false);
+      }
+    }, [user]);
   
     const logout = () => {
       setUser(null);
+      setIsUserLoggedIsAsGuest(null);
       return;
     }
   
     return (
-      <User.Context.Provider value={{ user, setUser, login, logout } satisfies User.Export}>
+      <User.Context.Provider value={{ user, setUser, login, logout, isUserLoggedIsAsGuest, loginAsGuest } satisfies User.Export}>
         {children}
       </User.Context.Provider>
     );

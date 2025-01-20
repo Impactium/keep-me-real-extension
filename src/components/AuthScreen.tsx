@@ -4,7 +4,7 @@ import { Button, Stack } from '@impactium/components';
 import { Input } from '@/ui/input';
 
 export const AuthScreen: React.FC = () => {
-  const { login } = User.use();
+  const { login, loginAsGuest } = User.use();
   const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true);
 
   const [username, setUsername] = useState<string>('');
@@ -65,6 +65,7 @@ export const AuthScreen: React.FC = () => {
           <Input img='KeyRound' type={password} valid={isPasswordValid} value={password} onChange={passwordInputHandler} placeholder='Password' />
           <Button loading={loading} variant='glass' disabled={isLoginDisabled} onClick={handleLogin} img='LogIn'>Log In</Button>
         </Stack>
+        <Button variant='ghost' onClick={loginAsGuest}>Continue as guest</Button>
       </Stack>
   </Stack>
 );

@@ -1,5 +1,3 @@
-if (import.meta.hot) {
-  import.meta.hot.on('vite:beforeUpdate', () => {
-    chrome.runtime.reload();
-  });
-}
+chrome.runtime.onInstalled.addListener(() => {
+  console.log('KeepMeReal installed and running.');
+});
